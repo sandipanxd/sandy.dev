@@ -90,6 +90,73 @@ main h2 {
   font-size: 0.9rem;
 }
 
+/* CSS Grid: single column by default, two columns from 30rem, three from 55rem */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 30rem) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 55rem) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.status {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+}
+
+.status-live {
+  background: rgba(110, 231, 183, 0.15);
+  color: var(--accent);
+}
+
+.status-planned {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink-soft);
+}
+
+.project-card h3 {
+  font-size: 1rem;
+}
+
+.project-card p {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.project-card a {
+  color: var(--accent);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
+
 /* Flexbox pattern 3: evenly spaced link row */
 .links {
   display: flex;

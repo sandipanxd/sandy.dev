@@ -1,3 +1,27 @@
+const skills = [
+  { name: "Node.js", slug: "nodedotjs" },
+  { name: "NestJS", slug: "nestjs" },
+  { name: "TypeScript", slug: "typescript" },
+  { name: "MongoDB", slug: "mongodb" },
+  { name: "AWS", slug: null },
+  { name: "React", slug: "react" },
+];
+
+const CLOUD_ICON_SVG = `<svg class="skill-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 18H6a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 16.2 8.1 4.5 4.5 0 0 1 19 18Z"/></svg>`;
+
+function skillIcon({ slug }) {
+  if (!slug) return CLOUD_ICON_SVG;
+  return `<img class="skill-icon" src="https://cdn.simpleicons.org/${slug}/6ee7b7" alt="" />`;
+}
+
+function renderSkills(list) {
+  const skillsList = document.getElementById("skillsList");
+  const tags = list.map(
+    (skill) => `<li>${skillIcon(skill)}${skill.name}</li>`
+  );
+  skillsList.innerHTML = tags.join("");
+}
+
 const projects = [
   {
     name: "Portfolio Site",
@@ -67,5 +91,7 @@ filterButtons.forEach((button) => {
     applyFilter(button.dataset.filter);
   });
 });
+
+renderSkills(skills);
 
 applyFilter("all");

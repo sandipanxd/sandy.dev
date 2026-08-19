@@ -33,29 +33,12 @@
 
       <section>
         <h2>Projects</h2>
-        <div class="project-grid">
-          <article class="project-card">
-            <span class="status status-live">Live</span>
-            <h3>Portfolio Site</h3>
-            <p>This site — HTML, CSS, and a build log of the roadmap itself.</p>
-            <a href="https://github.com/sandipanxd/sandy.dev" target="_blank" rel="noopener">View on GitHub</a>
-          </article>
-          <article class="project-card">
-            <span class="status status-planned">Planned</span>
-            <h3>To-Do App</h3>
-            <p>Full-stack CRUD app — React frontend, Express + MongoDB backend.</p>
-          </article>
-          <article class="project-card">
-            <span class="status status-planned">Planned</span>
-            <h3>Blog Platform</h3>
-            <p>Auth-gated posts with JWT, sign up/log in flows.</p>
-          </article>
-          <article class="project-card">
-            <span class="status status-planned">Planned</span>
-            <h3>E-Commerce App</h3>
-            <p>Next.js storefront with Stripe checkout and an admin dashboard.</p>
-          </article>
+        <div class="filter-row" id="projectFilters">
+          <button type="button" class="filter-btn active" data-filter="all">All</button>
+          <button type="button" class="filter-btn" data-filter="live">Live</button>
+          <button type="button" class="filter-btn" data-filter="planned">Planned</button>
         </div>
+        <div class="project-grid" id="projectGrid"></div>
       </section>
 
       <section>
@@ -67,5 +50,7 @@
       </section>
     </main>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

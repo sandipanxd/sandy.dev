@@ -95,3 +95,20 @@ filterButtons.forEach((button) => {
 renderSkills(skills);
 
 applyFilter("all");
+
+const THEME_KEY = "sandy-dev-theme";
+const themeToggle = document.getElementById("themeToggle");
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  themeToggle.textContent = theme === "light" ? "☀️" : "🌙";
+}
+
+themeToggle.addEventListener("click", () => {
+  const current = document.documentElement.getAttribute("data-theme");
+  const next = current === "light" ? "dark" : "light";
+  localStorage.setItem(THEME_KEY, next);
+  applyTheme(next);
+});
+
+applyTheme(localStorage.getItem(THEME_KEY) || "dark");

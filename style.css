@@ -4,6 +4,20 @@
   --ink: #eef0f4;
   --ink-soft: #9aa1ad;
   --accent: #6ee7b7;
+  --border: rgba(255, 255, 255, 0.08);
+  --fill: rgba(255, 255, 255, 0.05);
+  --fill-strong: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] {
+  --bg: #f4f6f2;
+  --surface: #ffffff;
+  --ink: #14181a;
+  --ink-soft: #5b6570;
+  --accent: #1f9d6c;
+  --border: rgba(20, 24, 26, 0.12);
+  --fill: rgba(20, 24, 26, 0.04);
+  --fill-strong: rgba(20, 24, 26, 0.08);
 }
 
 * {
@@ -29,9 +43,10 @@ body {
 }
 
 header {
+  position: relative;
   text-align: center;
   background: var(--surface);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 3rem 3.5rem;
 }
@@ -44,7 +59,7 @@ main {
 
 main section {
   background: var(--surface);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 1.75rem 2rem;
 }
@@ -108,8 +123,8 @@ main h2 {
   font: inherit;
   font-size: 0.85rem;
   color: var(--ink-soft);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--fill);
+  border: 1px solid var(--border);
   border-radius: 999px;
   padding: 0.35rem 0.9rem;
   cursor: pointer;
@@ -145,8 +160,8 @@ main h2 {
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--fill);
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1.25rem;
   display: flex;
@@ -167,7 +182,7 @@ main h2 {
 }
 
 .status-planned {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--border);
   color: var(--ink-soft);
 }
 
@@ -200,7 +215,7 @@ main h2 {
 
 .links a {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--fill);
   border-radius: 8px;
   padding: 0.5rem 1rem;
   text-decoration: none;
@@ -208,7 +223,7 @@ main h2 {
 }
 
 .links a:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--fill-strong);
 }
 
 h1 {
@@ -231,4 +246,22 @@ header p {
   color: var(--ink-soft);
   font-size: 1.05rem;
   line-height: 1.5;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  background: var(--fill);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--fill-strong);
 }

@@ -112,3 +112,23 @@ themeToggle.addEventListener("click", () => {
 });
 
 applyTheme(localStorage.getItem(THEME_KEY) || "dark");
+
+async function loadGithubStats() {
+  const statsEl = document.getElementById("githubStats");
+
+  try {
+    const response = await fetch("https://api.github.com/users/sandipanxd");
+
+    if (!response.ok) {
+      throw new Error(`GitHub API responded with ${response.status}`);
+    }
+
+    const { public_repos, followers } = await response.json();
+    statsEl.textContent = `${public_repos} public repos · ${followers} followers`;
+  } catch (error) {
+    statsEl.textContent = "GitHub stats unavailable right now";
+    console.error("Failed to load GitHub stats:", error);
+  }
+}
+
+loadGithubStats();

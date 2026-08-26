@@ -1,15 +1,16 @@
 # sandy.dev
 
-Personal portfolio site — built as part of a self-paced full stack learning roadmap (HTML/CSS/JS fundamentals now, React and a Node/Express + MongoDB backend later).
+Personal portfolio site — built as part of a self-paced full stack learning roadmap. Started as plain HTML/CSS/JS, now a React app built with Vite. Backend (Node/Express + MongoDB) comes in a later stage of the roadmap.
 
 ## Running locally
 
-Open `index.html` in a browser, or serve the folder with any static server:
-
 ```bash
-npx serve .
+npm install
+npm run dev
 ```
+
+Build for production with `npm run build`; preview that build with `npm run preview`.
 
 ## Stack
 
-Currently plain HTML/CSS. No build tooling yet — that comes in later stages of the roadmap.
+React + Vite.

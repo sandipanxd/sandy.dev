@@ -7,6 +7,7 @@
   --border: rgba(255, 255, 255, 0.08);
   --fill: rgba(255, 255, 255, 0.05);
   --fill-strong: rgba(255, 255, 255, 0.1);
+  --danger: #e07a5f;
 }
 
 :root[data-theme="light"] {
@@ -18,6 +19,7 @@
   --border: rgba(20, 24, 26, 0.12);
   --fill: rgba(20, 24, 26, 0.04);
   --fill-strong: rgba(20, 24, 26, 0.08);
+  --danger: #c44f36;
 }
 
 * {
@@ -287,6 +289,22 @@ main h2 {
 
 .contact-submit:hover {
   opacity: 0.9;
+}
+
+.contact-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.contact-success {
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.form-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
 }
 
 /* Flexbox pattern 3: evenly spaced link row */

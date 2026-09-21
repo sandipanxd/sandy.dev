@@ -1,18 +1,12 @@
 import { Router } from "express";
-import { readFile, writeFile } from "fs/promises";
-import { existsSync } from "fs";
+import Submission from "../models/Submission.js";
+import requireAdmin from "../middleware/requireAdmin.js";
+import contactLimiter from "../middleware/contactLimiter.js";
 
 const router = Router();
-const DATA_FILE = new URL("../data/submissions.json", import.meta.url);
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-async function readSubmissions() {
-  if (!existsSync(DATA_FILE)) return [];
-  const raw = await readFile(DATA_FILE, "utf-8");
-  return raw ? JSON.parse(raw) : [];
-}
-
-router.post("/", async (req, res, next) => {
+router.post("/", contactLimiter, async (req, res, next) => {
   try {
     const { name, email, message } = req.body;
 
@@ -28,17 +22,18 @@ router.post("/", async (req, res, next) => {
       return next({ status: 400, message: "that doesn't look like a valid email" });
     }
 
-    const submissions = await readSubmissions();
-    submissions.push({
-      name,
-      email,
-      message,
-      receivedAt: new Date().toISOString(),
-    });
-
-    await writeFile(DATA_FILE, JSON.stringify(submissions, null, 2));
+    await Submission.create({ name, email, message });
 
     res.status(201).json({ ok: true });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/", requireAdmin, async (req, res, next) => {
+  try {
+    const submissions = await Submission.find().sort({ receivedAt: -1 });
+    res.json(submissions);
   } catch (err) {
     next(err);
   }

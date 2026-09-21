@@ -2,8 +2,8 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import mongoose from "mongoose";
 import contactRoutes from "./routes/contact.js";
-import contactLimiter from "./middleware/contactLimiter.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(helmet());
 app.use(cors({ origin: FRONTEND_ORIGIN }));
 app.use(express.json({ limit: "20kb" }));
 
-app.use("/api/contact", contactLimiter, contactRoutes);
+app.use("/api/contact", contactRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ error: "Not found" });
@@ -22,6 +22,14 @@ app.use((req, res) => {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Listening on http://localhost:${PORT}`);
-});
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Listening on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB:", err.message);
+    process.exit(1);
+  });

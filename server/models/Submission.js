@@ -1,0 +1,12 @@
+import mongoose from "mongoose";
+
+const submissionSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    message: { type: String, required: true },
+  },
+  { timestamps: { createdAt: "receivedAt", updatedAt: false } }
+);
+
+export default mongoose.model("Submission", submissionSchema);
